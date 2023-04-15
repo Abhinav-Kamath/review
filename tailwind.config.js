@@ -14,7 +14,7 @@ module.exports = {
         main: '#080A1A',
         subMain : '#F20000',
         dry : '#080F29',
-        star : 'FFB000',
+        star : '#FFB000',
         text : '#C0C0C0',
         border : '#4b5563',
         dryGray : '#E0D5D5',

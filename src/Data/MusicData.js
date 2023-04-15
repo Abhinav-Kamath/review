@@ -51,5 +51,18 @@ export const Songs =[
         rate:4.3,
         reviews:25,
     },
+    {
+        name :'Naatu Naatu',
+        desc :'lorem ipsum',
+        titleImage:'#',
+        Image:'1.jpg',
+        category:'Tollywood',
+        language:'Telugu',
+        year:'2022',
+        time:'5min',
+        video:'',
+        rate:3.4,
+        reviews:23,
+    },
 
 ]
