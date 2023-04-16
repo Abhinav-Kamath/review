@@ -19,7 +19,7 @@ function Footer() {
                 },
                 {
                     name:'Songs',
-                    link:'/music'
+                    link:'/songs'
                 }
 
             ]

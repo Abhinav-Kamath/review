@@ -4,6 +4,7 @@ import HomeScreen from './Screens/HomeScreen'
 import AboutUs from './Screens/AboutUs'
 import NotFound from './Screens/NotFound'
 import ContactUs from './Screens/ContactUs'
+import SongsPage from './Screens/Music'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Route path='/' element={<HomeScreen />} />
       <Route path='/about-us' element={<AboutUs />} />
       <Route path='/contact-us' element={<ContactUs/>} />
+      <Route path='/songs' element={<SongsPage/>} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     
