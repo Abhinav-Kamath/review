@@ -66,3 +66,36 @@ export const Songs =[
     },
 
 ]
+
+export const UserData =[
+    {
+        name :'R',
+        Image:'1.jpeg',
+        rate :3 ,
+        message :"jjkabdbhhasvdasdjbkajdns akdnkasndklaaderg udjbdj dkndn"
+    },
+    {
+        name :'R',
+        Image:'1.jpg',
+        rate :3 ,
+        message :"jjkabdbhhasvdasdjbkajdns akdnkasndklaaderg udjbdj dkndn"
+    },
+    {
+        name :'R',
+        Image:'1.jpg',
+        rate :3 ,
+        message :"jjkabdbhhasvdasdjbkajdns akdnkasndklaaderg udjbdj dkndn"
+    },
+    {
+        name :'T',
+        Image:'1.jpg',
+        rate :3 ,
+        message :"jjkabdbhhasvdasdjbkajdns akdnkasndklaaderg udjbdj dkndn"
+    },
+    {
+        name :'t',
+        Image:'1.jpg',
+        rate :3 ,
+        message :"jjkabdbhhasvdasdjbkajdns akdnkasndklaaderg udjbdj dkndn"
+    },
+]
