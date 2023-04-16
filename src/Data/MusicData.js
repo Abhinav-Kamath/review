@@ -52,7 +52,7 @@ export const Songs =[
         reviews:25,
     },
     {
-        name :'Naatu Naatu',
+        name :'Na',
         desc :'lorem ipsum',
         titleImage:'#',
         Image:'1.jpg',

@@ -6,6 +6,8 @@ import NotFound from './Screens/NotFound'
 import ContactUs from './Screens/ContactUs'
 import SongsPage from './Screens/Music'
 import SingleMusic from './Screens/SingleMusic'
+import Login from './Screens/Login'
+import Register from './Screens/Register'
 
 function App() {
   return (
@@ -15,6 +17,9 @@ function App() {
       <Route path='/contact-us' element={<ContactUs/>} />
       <Route path='/songs' element={<SongsPage/>} />
       <Route path='/song/:id' element={<SingleMusic/>} />
+      <Route path='/login' element={<Login/>} />
+      <Route path='/register' element={<Register/>} />
+
       <Route path='/*' element={<NotFound />} />
     </Routes>
     
