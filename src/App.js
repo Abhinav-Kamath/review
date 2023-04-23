@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import Aos from 'aos'
 import HomeScreen from './Screens/HomeScreen'
 import AboutUs from './Screens/AboutUs'
 import NotFound from './Screens/NotFound'
@@ -8,8 +9,10 @@ import SongsPage from './Screens/Music'
 import SingleMusic from './Screens/SingleMusic'
 import Login from './Screens/Login'
 import Register from './Screens/Register'
+import Profile from './Screens/Dashboard/Profile'
 
 function App() {
+  Aos.init()
   return (
     <Routes>
       <Route path='/' element={<HomeScreen />} />
@@ -19,7 +22,7 @@ function App() {
       <Route path='/song/:id' element={<SingleMusic/>} />
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Register/>} />
-
+      <Route path='/profile' element={<Profile/>} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     
