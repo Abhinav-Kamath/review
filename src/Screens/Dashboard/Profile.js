@@ -11,7 +11,7 @@ function Profile() {
             <Uploader/>
             <Input label="FullName" placeholder="Viggu" type="text" bg={true}/>
             <Input label="Email" placeholder="Viggu@gmail.com" type="email" bg={true}/>
-            <div className='flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4'>
+            <div className='flex flex-row gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4'>
                 <button className='bg-subMain font-medium transitions hover:bg-main flex-rows gap-4 border border-subMain text-white px-6 rounded w-full sm:w-auto py-3'>Delete Account</button>
             </div>
             <div className='flex gap-2 flex-wrap flex-col-reverse sm:flex-row justify-between items-center my-4'>

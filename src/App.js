@@ -10,6 +10,8 @@ import SingleMusic from './Screens/SingleMusic'
 import Login from './Screens/Login'
 import Register from './Screens/Register'
 import Profile from './Screens/Dashboard/Profile'
+import Password from './Screens/Dashboard/Password'
+import FavoritesMusic from './Screens/Dashboard/FavoritesMusic'
 
 function App() {
   Aos.init()
@@ -23,6 +25,8 @@ function App() {
       <Route path='/login' element={<Login/>} />
       <Route path='/register' element={<Register/>} />
       <Route path='/profile' element={<Profile/>} />
+      <Route path='/password' element={<Password/>} />
+      <Route path='/favorites' element={<FavoritesMusic/>} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     
