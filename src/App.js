@@ -12,6 +12,9 @@ import Register from './Screens/Register'
 import Profile from './Screens/Dashboard/Profile'
 import Password from './Screens/Dashboard/Password'
 import FavoritesMusic from './Screens/Dashboard/FavoritesMusic'
+import SongsList from './Screens/Dashboard/Admin/SongsList'
+import Dashboard from './Screens/Dashboard/Admin/Dashboard'
+import Categories from './Screens/Dashboard/Admin/Categories'
 
 function App() {
   Aos.init()
@@ -27,6 +30,9 @@ function App() {
       <Route path='/profile' element={<Profile/>} />
       <Route path='/password' element={<Password/>} />
       <Route path='/favorites' element={<FavoritesMusic/>} />
+      <Route path='/songslist' element={<SongsList/>} />
+      <Route path='/dashboard' element={<Dashboard/>} />
+      <Route path='/categories' element={<Categories/>} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     
