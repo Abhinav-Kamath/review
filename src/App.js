@@ -15,6 +15,8 @@ import FavoritesMusic from './Screens/Dashboard/FavoritesMusic'
 import SongsList from './Screens/Dashboard/Admin/SongsList'
 import Dashboard from './Screens/Dashboard/Admin/Dashboard'
 import Categories from './Screens/Dashboard/Admin/Categories'
+import Users from './Screens/Dashboard/Admin/Users'
+import AddMusic from './Screens/Dashboard/Admin/AddMusic'
 
 function App() {
   Aos.init()
@@ -33,6 +35,8 @@ function App() {
       <Route path='/songslist' element={<SongsList/>} />
       <Route path='/dashboard' element={<Dashboard/>} />
       <Route path='/categories' element={<Categories/>} />
+      <Route path='/users' element={<Users/>} />
+      <Route path='/addsong' element={<AddMusic/>} />
       <Route path='/*' element={<NotFound />} />
     </Routes>
     
