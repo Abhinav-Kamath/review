@@ -2,11 +2,12 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaSearch, FaHeart } from "react-icons/fa";
 import { CgUser } from "react-icons/cg";
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import {  SearchTextAtom } from "./NavBar.state";
+import { FavDataAtom } from "../../Screens/Dashboard/Favorites.state";
 function NavBar() {
   const [SearchText, setSearchText] = useRecoilState(SearchTextAtom);
-
+  const FavData = useRecoilValue(FavDataAtom);
   const hover = "hover:text-subMain trasitions text-white";
   const Hover = ({ isActive }) => (isActive ? "text-subMain" : hover);
   return (
@@ -55,7 +56,7 @@ function NavBar() {
             <NavLink to="/favorites" className={`${Hover} relative`}>
               <FaHeart className="w-6 h-6" />
               <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
-                3
+                {FavData.length}
               </div>
             </NavLink>
           </div>

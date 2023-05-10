@@ -16,9 +16,6 @@ function Users() {
   const [tempChange, setTempChange] = useState(false);
 
   const handleDelete = async (id) => {
-      const config = {
-          headers: { 'Authorization' : `Bearer ${token}` }
-      };
       const response = await axios.delete('http://localhost:8000/api/users/'+id, config);
       const data = await response.data;
       console.log('Success:', data);

@@ -5,29 +5,26 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import {tokenAtom} from '../Login.state'
+import { FavDataAtom } from './Favorites.state'
 function FavoritesMusic() {
   const token = useRecoilValue(tokenAtom);
   const config = {
     headers: { 'Authorization' : `Bearer ${token}` }
   };
-  const [FavData, setFavData] = useState([]);
-
-  async function fetchData() {
-    await axios.get('http://localhost:8000/api/users/favorites', config)
+  const [FavData, setFavData] = useRecoilState(FavDataAtom);
+  async function delData() {
+    await axios.delete('http://localhost:8000/api/users/favorites',  config)
     .then((response) => {
+      setFavData([]);
       console.log(response.data);
-      setFavData(response.data);
     })
   }
-  useEffect(() => {
-    fetchData();
-  }, []);
   return (
     <SideBar>
         <div className='flex flex-col gap-6'>
            <div className='flex-btn gap-2'>
             <h2 className='text-xl font-bold'>Favorite Songs</h2>
-            <button className='bg-main font-medium transitions hover:bg-subMain flex-rows gap-4 border border-subMain text-white px-6 rounded'>
+            <button onClick={delData} className='bg-main font-medium transitions hover:bg-subMain flex-rows gap-4 border border-subMain text-white px-6 rounded'>
                 Delete All
             </button>
            </div>

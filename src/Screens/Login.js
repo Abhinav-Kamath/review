@@ -10,6 +10,7 @@ import {
 import { useNavigate } from 'react-router-dom';
 
 import { isAdminAtom, tokenAtom, isLoginAtom, idAtom } from './Login.state'
+import { FavDataAtom } from './Dashboard/Favorites.state'
 
 function Login() {
   const [isAdmin, setIsAdmin] = useRecoilState(isAdminAtom);
@@ -20,6 +21,18 @@ function Login() {
   const nav = useNavigate();
   const [token, setToken] = useRecoilState(tokenAtom);
   const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+  const [FavData, setFavData] = useRecoilState(FavDataAtom);
+
+  async function fetchFavs() {
+    const config = {
+      headers: { 'Authorization' : `Bearer ${token}` }
+    };
+    await axios.get('http://localhost:8000/api/users/favorites', config)
+    .then((response) => {
+      console.log(response.data);
+      setFavData(response.data);
+    })
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,6 +47,7 @@ function Login() {
     .then((result) => {
       console.log('Success:', result);
       nav('/dashboard');
+      fetchFavs();
     })
     .catch((error) => {
       setError(true);

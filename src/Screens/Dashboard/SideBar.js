@@ -10,9 +10,14 @@ import { isAdminAtom } from '../Login.state'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { BiExit } from 'react-icons/bi'
 import { isLoginAtom } from '../Login.state'
+import { useNavigate } from 'react-router-dom'
+import { FavDataAtom } from './Favorites.state'
 function SideBar({children}) {
     const isAdmin = useRecoilValue(isAdminAtom);
     const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
+    const [FavData, setFavData] = useRecoilState(FavDataAtom);
+    const nav = useNavigate();
+    React.useEffect(() => {if (!isLogin) nav('/login')});
     const SideLinks =[
         {
             name :"Dashboard",
@@ -63,6 +68,7 @@ function SideBar({children}) {
         icon: BiExit,
         function : () => {
             setIsLogin(false);
+            setFavData([]);
         }
     })
     const active = "bg-dryGray text-subMain "

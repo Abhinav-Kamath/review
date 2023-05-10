@@ -10,9 +10,7 @@ import { useNavigate } from 'react-router-dom';
 import { isAdminAtom, tokenAtom, isLoginAtom } from '../../Login.state'
 
 function Dashboard() {
-    const isLogin = useRecoilValue(isLoginAtom);
-    const nav = useNavigate();
-    React.useEffect(() => {if (!isLogin) nav('/login')});
+
 
     const DashboardData =[
         {

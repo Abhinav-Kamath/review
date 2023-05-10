@@ -7,37 +7,80 @@ import { UserData } from '../../../Data/MusicData'
 import { MdDelete } from 'react-icons/md'
 import { FaEdit } from 'react-icons/fa'
 import { ImUpload } from 'react-icons/im'
+import { useRecoilValue } from 'recoil'
+import { tokenAtom } from '../../Login.state'
+import { useState } from 'react'
+import axios from 'axios'
 
 function AddMusic() {
-  return (
+    const [title, setTitle] = useState('');
+    const [duration, setDuration] = useState('');
+    const [language, setLanguage] = useState('');
+    const [year, setYear] = useState('');
+    const [lyrics, setLyrics] = useState('');
+    const [category, setCategory] = useState('');
+    const [artist, setArtist] = useState('');
+    const [message, setMessage] = useState('');
+
+    const token = useRecoilValue(tokenAtom);
+    const config = {
+        headers: { 'Authorization' : `Bearer ${token}` }
+    };
+
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      const data = {
+        title,
+        duration,
+        language,
+        year,
+        lyrics,
+        artist,
+        genre : category,
+      };
+      axios.post('http://localhost:8000/api/music', data, config)
+      .then((response) => {
+        console.log(response.data);
+        setMessage("Song Added Successfully");
+      })
+      .then((result) => {
+        console.log('Success:', result);
+      })
+      .catch((error) => {  
+        setMessage(error.response.data.message);
+      })
+    }
+
+    return (
     <SideBar>
         <div className='flex flex-col gap-6'>
             <h2 className='text-xl font-bold text-white'>Add Song</h2>
             <div className='w-full grid md:grid-cols-2 gap-6'>
-                <Input label="Song Title" placeholder="Viggu" type="text" bg={true}/>
-                <Input label="Time" placeholder="2min" type="text" bg={true}/>
+                <Input label="Song Title" placeholder="Song Title" type="text" bg={true} onChange={e=>setTitle(e.target.value)}/>
+                <Input label="Duration" placeholder="Duration" type="text" bg={true} onChange={e=>setDuration(e.target.value)}/>
             </div>
            
             <div className='w-full grid md:grid-cols-2 gap-6'>
-                <Input label="Language" placeholder="English" type="text" bg={true}/>
-                <Input label="Year" placeholder="2023" type="number" bg={true}/>
+                <Input label="Language" placeholder="Language" type="text" bg={true} onChange={e=>setLanguage(e.target.value)}/>
+                <Input label="Year" placeholder="Year" type="number" bg={true} onChange={e=>setYear(e.target.value)}/>
             </div>
 
             <div className='w-full grid md:grid-cols-2 gap-6'>
                 <div className='flex flex-col gap-2'>
-                    <p className='text-border font-semibold text-sm'> Image without Tile</p>
+                    <p className='text-border font-semibold text-sm'> Image</p>
                     <Uploader/>
-                    <div className='w-32 h-32 p-2 bg-main border border-border rounded'>
+                    {/* <div className='w-32 h-32 p-2 bg-main border border-border rounded'>
                         <img src="/images/songs/99.jpg" alt="" className='w-full h-full object-cover rounded'/>
-                    </div>
+                    </div> */}
                 </div>
+                <Input label="Artist" placeholder="Artist" type="text" bg={true} onChange={e=>setArtist(e.target.value)}/>
                
             </div>
-            <Message label="Description" placeholder="keep it Short"/>
+            <Message label="Lyrics" placeholder="Enter the Lyrics" onChange={e=>setLyrics(e.target.value)}/>
             <div className='twext-sm w-full'>
-                <Select label="Movie Category" options={CategoriesData}/>
+                <Select label="Movie Category" options={CategoriesData} onChange={e=>setCategory(e.target.value)}/>
             </div>
-            <div className='w-full grid lg:grid-cols-2 gap-6 items-start'>
+            {/* <div className='w-full grid lg:grid-cols-2 gap-6 items-start'>
                 <button className='w-full py-4 bg-main border border-subMain border-dashed text-white rounded'>
                     Add Cast
                     <div className='grid 2xl:grid-cols-4 lg:grid-cols-3 grid-cols-2 gap-4 sm:grid-cols-4'>
@@ -57,12 +100,13 @@ function AddMusic() {
                         ))}
                     </div>
                 </button>
-            </div>
+            </div> */}
             <div className='flex justify-end items-center my-4'>
-                <button className='bg-subMain py-4 font-medium transitions hover:bg-dry flex-rows gap-4 border border-subMain text-white w-full'>
+                <button onClick={handleSubmit} className='bg-subMain py-4 font-medium transitions hover:bg-dry flex-rows gap-4 border border-subMain text-white w-full'>
                     <ImUpload/> Add Song
                 </button>
             </div>
+            {message && <p>{message}</p>}
         </div>
     </SideBar>
   )
