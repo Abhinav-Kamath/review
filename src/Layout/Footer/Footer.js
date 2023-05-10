@@ -53,14 +53,14 @@ function Footer() {
                 },
                 {
                     name :'My Favorite',
-                    link:'/favorite'
+                    link:'/favorites'
                 },
                 {
                     name: 'Profile',
                     link: '/profile'
                 },
                 {
-                    name:'SChange Password',
+                    name:'Change Password',
                     link:'/password'
                 }
 
@@ -91,7 +91,7 @@ function Footer() {
 
             <div className='pb-3.5 sm:pb-0 col-span-1 md:col-span-2 lg:col-span-3'>
                 <Link to="/">
-                    <img src="#" alt="Logo" className='w-2/4 object-contain h-12'/>
+                    <img src="/images/logo-no-background.png" alt="logo" className="w-2/4 object-contain h-12" />
                 </Link>
                 <p className='leading-7 text-sm text-border mt-3'>
                     <span>

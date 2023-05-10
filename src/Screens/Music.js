@@ -4,10 +4,40 @@ import Filters from "../Components/Filters";
 import { Songs } from "../Data/MusicData";
 import Musics from "../Components/Musics";
 import { CgSpinner } from "react-icons/cg";
+import { useEffect } from 'react'
+import axios from 'axios'
+import {useRecoilValue} from 'recoil';
+import { tokenAtom } from "./Login.state";
+import { GenreAtom, YearAtom, LanguageAtom, StarsAtom } from "../Components/Filters.state";
 
 function SongsPage() {
   const maxpage = 10;
   const [page, setPage] = useState(maxpage);
+
+  const genre = useRecoilValue(GenreAtom);
+  const year = useRecoilValue(YearAtom);
+  const language = useRecoilValue(LanguageAtom);
+  const stars = useRecoilValue(StarsAtom);
+  const [SongsData, setSongsData] = useState([]);
+  function fetchData() {
+    axios.get('http://localhost:8000/api/music',
+    {
+      params: {
+        genre: genre.title!=="Category" ? genre.title : "",
+        language: language.title!=="Sort by Language" ? language.title : "",
+        year: year.title!=="Sort by Year" ? year.title : "",
+        rating: stars.title!=="Sort by Rating" ? stars.title : ""
+      }
+    })
+    .then((response) => {
+      console.log(response.data);
+      setSongsData(response.data);
+    })
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [genre, language, year, stars]);
 
   const HandleLoadMore = () => {
     setPage(page + maxpage);
@@ -15,26 +45,26 @@ function SongsPage() {
   return (
     <Layout>
       <div className="min-height-screen container mx-auto px-2 my-6">
-        <Filters />
+        <Filters/>
         <p className="text-lg font-medium my-6">
-          Total <span className="font-bold text-subMain">{Songs?.length}</span>{" "}
+          Total <span>{SongsData.music?.length}</span>{" "}
           items found
         </p>
         <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6">
-          {Songs.slice(0,page)?.map((song, index) => (
-            <Musics key={index} song={song} />
+          {SongsData.music?.map((song, index) => (
+            <Musics key={index} song={song}/>
           ))}
         </div>
         {/* Loading More */}
 
-        <div className="w-full flex-colo md:my-20 my-10">
+        {/* <div className="w-full flex-colo md:my-20 my-10">
           <button
             onClick={HandleLoadMore}
             className="flex-rows gap-3 text-white py-3 px-8 rounded font-semibold border-2 border-subMain"
           >
             Loading <CgSpinner className="animate-spin" />
           </button>
-        </div>
+        </div> */}
       </div>
     </Layout>
   );

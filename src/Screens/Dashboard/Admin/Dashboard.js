@@ -3,15 +3,23 @@ import SideBar from '../SideBar'
 import { FaRegListAlt, FaUser } from 'react-icons/fa'
 import { HiViewGridAdd } from 'react-icons/hi'
 import Table from '../../../Components/Table'
-import { Songs } from '../../../Data/MusicData'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import {useRecoilValue} from 'recoil';
+import { useNavigate } from 'react-router-dom';
+import { isAdminAtom, tokenAtom, isLoginAtom } from '../../Login.state'
 
 function Dashboard() {
+    const isLogin = useRecoilValue(isLoginAtom);
+    const nav = useNavigate();
+    React.useEffect(() => {if (!isLogin) nav('/login')});
+
     const DashboardData =[
         {
             bg:"bg-orange-600",
             icon : FaRegListAlt,
             title : "Total songs",
-            total :90,
+            total :100,
         },
         {
             bg:"bg-blue-700",
@@ -23,12 +31,28 @@ function Dashboard() {
             bg:"bg-green-600",
             icon : FaUser,
             title : "Total Users",
-            total :134,
+            total :5,
         },
 
     ]
 
-  return (
+    const token = useRecoilValue(tokenAtom);
+    const config = {
+      headers: { 'Authorization' : `Bearer ${token}` }
+    };
+    const [SongsData, setSongsData] = useState([]);
+  
+    async function fetchData() {
+        const response = await axios.get('http://localhost:8000/api/music/random', config)
+        const result = await response.data;
+        setSongsData([...result]);
+    }
+
+    useEffect(() => {
+      fetchData();
+    }, []);
+
+    return (
     <SideBar>
         <h2 className='text-xl font-bold'>Dashboard</h2>
         <div className='grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-4'>
@@ -47,7 +71,7 @@ function Dashboard() {
             }
         </div>
         <h3 className='text-md font-medium my-6'>Recent songs</h3>
-        <Table data={Songs.slice(0,5)} admin={true}/>S
+        <Table data={SongsData.slice(0,4)} admin={true}/>
     </SideBar>
   )
 }

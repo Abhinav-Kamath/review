@@ -12,15 +12,15 @@ const Rows = (song,i,admin)  => {
             <td className={`${Text}`}>
                 <div className='w-12 p-1 bg-dry border border-border h-12 rounded overflow-hidden'>
 
-                    <img className='h-full w-full object-cover' src={`/images/songs/${song.titleImage}`} alt={song?.name}/>
+                    <img className='h-full w-full object-cover' src={`/images/music.png`} alt={song?.name}/>
                 </div>
                 
             </td>
-            <td className={`${Text} truncate`}>{song.name}</td>
-            <td className={`${Text}`}>{song.category}</td>
+            <td className={`${Text} truncate`}>{song.title}</td>
+            <td className={`${Text}`}>{song.genre}</td>
             <td className={`${Text}`}>{song.language}</td>
             <td className={`${Text}`}>{song.year}</td>
-            <td className={`${Text}`}>{song.time}</td>
+            <td className={`${Text}`}>{song.duration}</td>
             <td className={`${Text} float-right flex-rows gap-2`}>
                 {
                     admin === true ? (
@@ -35,11 +35,7 @@ const Rows = (song,i,admin)  => {
      Edit <FaCloudDownloadAlt className='text-green-500'/>
      </button>
      <Link to={`/song/${song?.name}`} className='bg-subMain text-white rounded flex-colo w-7 h-7'> <GoEye /></Link></>
-     
-     
      )
-
-                    
                 }
                
             </td>
@@ -54,16 +50,16 @@ function Table({data, admin}) {
 
 
   return (
-    <div className='overflow-x-scroll overflow-hidden relative w-full'>
-      <table className='w-full table-auto border border-border divide-y divide-border'>
+    <div className='overflow-hidden relative w-full'>
+      <table className='table-auto border border-border divide-y divide-border'>
         <thread>
             <tr className='bg-dryGray w-full'>
                 <th scope='col' className={`${Head}`}> Image</th>
                 <th scope='col' className={`${Head}`}> Name</th>
-                <th scope='col' className={`${Head}`}> Category</th>
+                <th scope='col' className={`${Head}`}> Genre</th>
                 <th scope='col' className={`${Head}`}> Language</th>
                 <th scope='col' className={`${Head}`}> Year</th>
-                <th scope='col' className={`${Head}`}> Time</th>
+                <th scope='col' className={`${Head}`}> Duration</th>
                 <th scope='col' className={`${Head} text-end`}> Actions</th>
             </tr>
             <tbody className='bg-msin divide-y divide-gray-800'>

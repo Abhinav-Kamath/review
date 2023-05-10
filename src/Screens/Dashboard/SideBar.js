@@ -6,33 +6,28 @@ import { RiMovie2Fill, RiLockPasswordLine } from 'react-icons/ri'
 import { HiViewGridAdd } from 'react-icons/hi'
 import Layout from '../../Layout/Layout'
 import { NavLink } from 'react-router-dom'
-
+import { isAdminAtom } from '../Login.state'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { BiExit } from 'react-icons/bi'
+import { isLoginAtom } from '../Login.state'
 function SideBar({children}) {
+    const isAdmin = useRecoilValue(isAdminAtom);
+    const [isLogin, setIsLogin] = useRecoilState(isLoginAtom);
     const SideLinks =[
         {
             name :"Dashboard",
             link: "/dashboard",
-            icon: BsFillGridFill
+            icon: BsFillGridFill,
         },
         {
             name :"Songs",
-            link: "/songlist",
+            link: "/songs",
             icon: FaListAlt
-        },
-        {
-            name :"add song",
-            link: "/addsong",
-            icon: RiMovie2Fill
         },
         {
             name :"Categories",
             link: "/categories",
             icon: HiViewGridAdd
-        },
-        {
-            name :"Users",
-            link: "/users",
-            icon: FaUser
         },
         {
             name :"Update Profile",
@@ -50,6 +45,26 @@ function SideBar({children}) {
             icon: RiLockPasswordLine
         },
     ]
+    if (isAdmin) {
+        SideLinks.push({
+            name :"Users",
+            link: "/users",
+            icon: FaUser
+        })
+        SideLinks.push({
+            name :"Add Song",
+            link: "/addsong",
+            icon: RiMovie2Fill
+        })
+    }
+    SideLinks.push({
+        name :"LogOut",
+        link: "/",
+        icon: BiExit,
+        function : () => {
+            setIsLogin(false);
+        }
+    })
     const active = "bg-dryGray text-subMain "
     const hover ="hover:text-white hover:bg-main "
     const inActive ="rounded font-medium transitions flex gap-3 items-center p-4 "
@@ -64,7 +79,7 @@ function SideBar({children}) {
                 <div className='col-span-2 sticky bg-dry border border-gray-800 p-6 rounded-md xl:mb-0 mb-5 '>
                     {
                         SideLinks.map((link,index) => (
-                            <NavLink to={link.link} key={index} className={Hover}>
+                            <NavLink onClick={link.function} to={link.link} key={index} className={Hover}>
                                 <link.icon/> <p>{link.name}</p>
                             </NavLink>
                         ))

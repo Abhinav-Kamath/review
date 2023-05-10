@@ -18,28 +18,33 @@ import Categories from './Screens/Dashboard/Admin/Categories'
 import Users from './Screens/Dashboard/Admin/Users'
 import AddMusic from './Screens/Dashboard/Admin/AddMusic'
 
+import {
+  RecoilRoot
+} from 'recoil';
+
 function App() {
   Aos.init()
   return (
-    <Routes>
-      <Route path='/' element={<HomeScreen />} />
-      <Route path='/about-us' element={<AboutUs />} />
-      <Route path='/contact-us' element={<ContactUs/>} />
-      <Route path='/songs' element={<SongsPage/>} />
-      <Route path='/song/:id' element={<SingleMusic/>} />
-      <Route path='/login' element={<Login/>} />
-      <Route path='/register' element={<Register/>} />
-      <Route path='/profile' element={<Profile/>} />
-      <Route path='/password' element={<Password/>} />
-      <Route path='/favorites' element={<FavoritesMusic/>} />
-      <Route path='/songslist' element={<SongsList/>} />
-      <Route path='/dashboard' element={<Dashboard/>} />
-      <Route path='/categories' element={<Categories/>} />
-      <Route path='/users' element={<Users/>} />
-      <Route path='/addsong' element={<AddMusic/>} />
-      <Route path='/*' element={<NotFound />} />
-    </Routes>
-    
+    <RecoilRoot>
+      <Routes>
+        <Route path='/' element={<HomeScreen />} />
+        <Route path='/about-us' element={<AboutUs />} />
+        <Route path='/contact-us' element={<ContactUs/>} />
+        <Route path='/songs' element={<SongsPage/>} />
+        <Route path='/song/:id' element={<SingleMusic/>} />
+        <Route path='/login' element={<Login/>} />
+        <Route path='/register' element={<Register/>} />
+        <Route path='/profile' element={<Profile/>} />
+        <Route path='/password' element={<Password/>} />
+        <Route path='/favorites' element={<FavoritesMusic/>} />
+        <Route path='/songslist' element={<SongsList/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/categories' element={<Categories/>} />
+        <Route path='/users' element={<Users/>} />
+        <Route path='/addsong' element={<AddMusic/>} />
+        <Route path='/*' element={<NotFound />} />
+      </Routes>
+    </RecoilRoot>
   )
 }
 

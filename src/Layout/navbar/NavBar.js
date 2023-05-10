@@ -2,8 +2,11 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaSearch, FaHeart } from "react-icons/fa";
 import { CgUser } from "react-icons/cg";
-
+import { useRecoilState } from 'recoil'
+import {  SearchTextAtom } from "./NavBar.state";
 function NavBar() {
+  const [SearchText, setSearchText] = useRecoilState(SearchTextAtom);
+
   const hover = "hover:text-subMain trasitions text-white";
   const Hover = ({ isActive }) => (isActive ? "text-subMain" : hover);
   return (
@@ -13,7 +16,7 @@ function NavBar() {
           {/* Logo */}
           <div className="col-span-1 lg:block hidden">
             <Link to="/">
-              <img src="" alt="logo" className="w-32 h-12 object-contain" />
+              <img src="/images/logo-no-background.png" alt="logo" className="w-40 h-25 object-contain" />
             </Link>
           </div>
 
@@ -23,12 +26,13 @@ function NavBar() {
               <button
                 type="submit"
                 className="bg-subMain text-white w-12 flex-colo h-12 rounded"
-              >
+                >
                 <FaSearch />
               </button>
               <input
                 type="text"
                 placeholder="Search your music from here"
+                onChange={e=>setSearchText(e.target.value)}
                 className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black"
               ></input>
             </form>
@@ -48,7 +52,7 @@ function NavBar() {
             <NavLink to="/login" className={Hover}>
               <CgUser className="w-8 h-8" />
             </NavLink>
-            <NavLink to="/favorite" className={`${Hover} relative`}>
+            <NavLink to="/favorites" className={`${Hover} relative`}>
               <FaHeart className="w-6 h-6" />
               <div className="w-5 h-5 flex-colo rounded-full text-xs bg-subMain text-white absolute -top-5 -right-1">
                 3

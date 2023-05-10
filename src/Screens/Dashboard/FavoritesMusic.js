@@ -1,9 +1,27 @@
 import React from 'react'
 import SideBar from './SideBar'
 import Table from '../../Components/Table'
-import { Songs } from '../../Data/MusicData'
-
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import {tokenAtom} from '../Login.state'
 function FavoritesMusic() {
+  const token = useRecoilValue(tokenAtom);
+  const config = {
+    headers: { 'Authorization' : `Bearer ${token}` }
+  };
+  const [FavData, setFavData] = useState([]);
+
+  async function fetchData() {
+    await axios.get('http://localhost:8000/api/users/favorites', config)
+    .then((response) => {
+      console.log(response.data);
+      setFavData(response.data);
+    })
+  }
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <SideBar>
         <div className='flex flex-col gap-6'>
@@ -13,7 +31,7 @@ function FavoritesMusic() {
                 Delete All
             </button>
            </div>
-           <Table data={Songs} admin={false}/>
+           <Table data={FavData} admin={false}/>
         </div>
     </SideBar>
   )

@@ -2,39 +2,41 @@ import React, { Fragment, useState } from "react";
 import { CategoriesData } from "../Data/CategoriesData";
 import { Listbox, Transition } from "@headlessui/react";
 import { FaAngleDown, FaCheck } from "react-icons/fa";
+import { StarsAtom, GenreAtom, YearAtom, LanguageAtom } from "./Filters.state";
+import { useRecoilState } from 'recoil'
+
 const YearData = [
-  { title: "Sort by Year" },
   { title: "1900-1980" },
   { title: "1980-1990" },
   { title: "1990-2000" },
   { title: "2000-2010" },
   { title: "2010-2030" },
 ];
-const TimeData = [
-  { title: "Sort by Time" },
-  { title: "0-5 min" },
-  { title: "5-8 min" },
-  { title: "8-10 min" },
+const LanguageData = [
+  { title: "Hindi" },
+  { title: "English" },
+  { title: "Telugu" },
+  { title: "Tamil" },
+  { title: "Kannada" },
 ];
 const RateData = [
-  { title: "Sort by Rates" },
-  { title: "1 Star" },
-  { title: "2 Star" },
-  { title: "3 Star" },
-  { title: "4 Star" },
-  { title: "5 Star" },
+  { title: "1" },
+  { title: "2" },
+  { title: "3" },
+  { title: "4" },
+  { title: "5" },
 ];
 
 function Filters() {
-  const [category, setCategory] = useState({ title: "Category" });
-  const [year, setYear] = useState(YearData[0]);
-  const [time, setTime] = useState(TimeData[0]);
-  const [stars, setStars] = useState(RateData[0]);
+  const [genre, setGenre] = useRecoilState(GenreAtom);
+  const [year, setYear] = useRecoilState(YearAtom);
+  const [language, setLanguage] = useRecoilState(LanguageAtom);
+  const [stars, setStars] = useRecoilState(StarsAtom);
 
   const Filter = [
     {
-      value: category,
-      onChange: setCategory,
+      value: genre,
+      onChange: setGenre,
       items: CategoriesData,
     },
     {
@@ -43,9 +45,9 @@ function Filters() {
       items: YearData,
     },
     {
-      value: time,
-      onChange: setTime,
-      items: TimeData,
+      value: language,
+      onChange: setLanguage,
+      items: LanguageData,
     },
     {
       value: stars,
