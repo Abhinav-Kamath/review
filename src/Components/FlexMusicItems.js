@@ -1,12 +1,13 @@
 import React from 'react'
-import { FaRegCalendarAlt } from 'react-icons/fa'
+import { FaRegCalendarAlt, FaStar } from 'react-icons/fa'
 import { BiTime } from 'react-icons/bi'
 
 function FlexMusicItems({song}) {
   return (
     <>
       <div className='flex items-center gap-2'>
-        <span className='text-sm font-medium'>{song.category}</span>
+        <FaStar className='text-subMain w-3 h-3'/>
+        <span className='text-sm font-medium'>{song.rating}</span>
       </div>
       <div className='flex items-center gap-2'>
         <FaRegCalendarAlt className='text-subMain w-3 h-3' />
@@ -14,7 +15,7 @@ function FlexMusicItems({song}) {
       </div>
       <div className='flex items-center gap-2'>
         <BiTime className='text-subMain w-3 h-3' />
-        <span className='text-sm font-medium'>{song.time}</span>
+        <span className='text-sm font-medium'>{song.duration}</span>
       </div>
     </>
   )

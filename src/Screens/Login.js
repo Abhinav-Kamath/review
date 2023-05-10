@@ -47,13 +47,12 @@ function Login() {
     .then((result) => {
       console.log('Success:', result);
       nav('/dashboard');
-      fetchFavs();
     })
     .catch((error) => {
       setError(true);
     });
   }
-  useEffect(() => {if (isLogin) nav('/dashboard')});
+  useEffect(() => {if (isLogin) {nav('/dashboard'); fetchFavs();}});
   return (
     <div>
       {!isLogin && <Layout>

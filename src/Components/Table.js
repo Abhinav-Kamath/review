@@ -34,7 +34,7 @@ const Rows = (song,i,admin)  => {
      <><button className='border bg-dry flex-rows gap-2 text-border py-1 px-2 border-border rounded'>
      Edit <FaCloudDownloadAlt className='text-green-500'/>
      </button>
-     <Link to={`/song/${song?.name}`} className='bg-subMain text-white rounded flex-colo w-7 h-7'> <GoEye /></Link></>
+     <Link to={`/song/${song?._id}`} className='bg-subMain text-white rounded flex-colo w-7 h-7'> <GoEye /></Link></>
      )
                 }
                
