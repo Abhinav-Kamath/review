@@ -22,7 +22,7 @@ function SongsPage() {
   const SearchText = useRecoilValue(SearchTextAtom);
   const [SearchSongsData, setSearchSongsData] = useState([]);
   function fetchSearchData() {
-    axios.get('http://localhost:8000/api/music',
+    axios.get('/api/music',
     {
       params: {
         search: SearchText,
@@ -38,7 +38,7 @@ function SongsPage() {
   }, [SearchText]);
 
   function fetchData() {
-    axios.get('http://localhost:8000/api/music',
+    axios.get('/api/music',
     {
       params: {
         genre: genre.title!=="Category" ? genre.title : "",

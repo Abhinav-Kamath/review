@@ -15,7 +15,7 @@ function Musics({song}) {
   async function fetchData(id) {
     if(!isLogin) return;
     const data = {musicId : id};
-    await axios.post('http://localhost:8000/api/users/favorites', data,  config)
+    await axios.post('/api/users/favorites', data,  config)
     .then((response) => {
       console.log(response.data);
       setFavData(response.data);
@@ -24,7 +24,7 @@ function Musics({song}) {
 
   return (
     <div className='border border-border p-1 hover:scale-95 transitions relative rounded overflow-hidden'>
-      <Link to={`/song/${song.title}`}  className='w-full'>
+      <Link to={`/song/${song._id}`}  className='w-full'>
         <img src={`/images/Album.jpg`} alt={song.title} className='w-full h-96 object-cover'/>
       </Link>
       <div className='absolute flex-btn gap-2 bottom-0 right-0 left-0 bg-main bg-opacity-60 text-white px-4 py-3'>

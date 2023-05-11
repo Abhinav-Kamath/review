@@ -21,7 +21,7 @@ function Profile() {
     const config = {
       headers: { 'Authorization' : `Bearer ${token}` }
     };
-    axios.put('http://localhost:8000/api/users/', data, config)
+    axios.put('/api/users/', data, config)
     .then((response) => {
       console.log(response.data);
       setMessage("Profile Updated");

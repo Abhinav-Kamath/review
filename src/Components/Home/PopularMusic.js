@@ -8,7 +8,7 @@ import axios from 'axios'
 function PopularMusic() {
   const [SongsData, setSongsData] = useState([]);
     function fetchData() {
-      axios.get('http://localhost:8000/api/music/random')
+      axios.get('/api/music/random')
       .then((response) => {
         console.log(response.data);
         setSongsData(response.data);

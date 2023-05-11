@@ -13,7 +13,7 @@ function FavoritesMusic() {
   };
   const [FavData, setFavData] = useRecoilState(FavDataAtom);
   async function delData() {
-    await axios.delete('http://localhost:8000/api/users/favorites',  config)
+    await axios.delete('/api/users/favorites',  config)
     .then((response) => {
       setFavData([]);
       console.log(response.data);

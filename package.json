@@ -1,6 +1,7 @@
 {
   "name": "review",
   "version": "0.1.0",
+  "proxy": "http://musicjunkies-backend-svc:8000",
   "private": true,
   "dependencies": {
     "@headlessui/react": "^1.7.13",

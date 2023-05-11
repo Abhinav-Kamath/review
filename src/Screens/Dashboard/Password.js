@@ -26,7 +26,7 @@ function Password() {
       const config = {
         headers: { 'Authorization' : `Bearer ${token}` }
       };
-      axios.put('http://localhost:8000/api/users/password', data , config)
+      axios.put('/api/users/password', data , config)
       .then((response) => {
         console.log(response.data);
         setMessage(response.data.message);

@@ -16,14 +16,14 @@ function Users() {
   const [tempChange, setTempChange] = useState(false);
 
   const handleDelete = async (id) => {
-      const response = await axios.delete('http://localhost:8000/api/users/'+id, config);
+      const response = await axios.delete('/api/users/'+id, config);
       const data = await response.data;
       console.log('Success:', data);
       setTempChange(!tempChange)
   }
 
   async function fetchData() {
-    const response = await axios.get('http://localhost:8000/api/users/', config)
+    const response = await axios.get('/api/users/', config)
     const result = await response.data;
     setUserData([...result]);
   }

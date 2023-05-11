@@ -46,7 +46,7 @@ function SongRating({song, fetchData}) {
       comment: review,
       rating: rating
     }
-    await axios.post('http://localhost:8000/api/music/review/'+song._id, data, config)
+    await axios.post('/api/music/review/'+song._id, data, config)
     .then((response) => {
       console.log(response.data);
       setMessage(response.data.message);

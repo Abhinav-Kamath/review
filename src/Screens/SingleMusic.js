@@ -15,7 +15,7 @@ function SingleMusic() {
     const {id} = useParams()
     const [SongData, setSongData] = useState([]);
     function fetchData() {
-      axios.get('http://localhost:8000/api/music/song/'+id)
+      axios.get('/api/music/song/'+id)
       .then((response) => {
         console.log(response.data);
         setSongData(response.data);

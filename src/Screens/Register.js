@@ -19,7 +19,7 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { fullname, email, password };
-    axios.post('http://localhost:8000/api/users/', data)
+    axios.post('/api/users/', data)
     .then((response) => {
       console.log(response.data);
     })

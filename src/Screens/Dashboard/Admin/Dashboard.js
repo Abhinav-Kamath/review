@@ -41,7 +41,7 @@ function Dashboard() {
     const [SongsData, setSongsData] = useState([]);
   
     async function fetchData() {
-        const response = await axios.get('http://localhost:8000/api/music/random', config)
+        const response = await axios.get('/api/music/random', config)
         const result = await response.data;
         setSongsData([...result]);
     }

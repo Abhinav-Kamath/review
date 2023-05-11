@@ -38,7 +38,7 @@ function AddMusic() {
         artist,
         genre : category,
       };
-      axios.post('http://localhost:8000/api/music', data, config)
+      axios.post('/api/music', data, config)
       .then((response) => {
         console.log(response.data);
         setMessage("Song Added Successfully");

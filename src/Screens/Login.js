@@ -27,7 +27,7 @@ function Login() {
     const config = {
       headers: { 'Authorization' : `Bearer ${token}` }
     };
-    await axios.get('http://localhost:8000/api/users/favorites', config)
+    await axios.get('/api/users/favorites', config)
     .then((response) => {
       console.log(response.data);
       setFavData(response.data);
@@ -37,7 +37,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
-    axios.post('http://localhost:8000/api/users/login', data)
+    axios.post('/api/users/login', data)
     .then((response) => {console.log(response.data);
       setToken(response.data.token);
       setIsAdmin(response.data.isAdmin); 

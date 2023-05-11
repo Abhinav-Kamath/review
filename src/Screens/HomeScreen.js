@@ -15,7 +15,7 @@ function HomeScreen() {
   const SearchText = useRecoilValue(SearchTextAtom);
   const [SongsData, setSongsData] = useState([]);
   function fetchData() {
-    axios.get('http://localhost:8000/api/music',
+    axios.get('/api/music',
     {
       params: {
         search: SearchText,
