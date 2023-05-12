@@ -1,0 +1,25 @@
+---
+- name: "Deploying frontend service"
+  hosts: all
+  connection: local
+  tasks:
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+
+    - name: "Delete deployment if already exists"
+      kubernetes.core.k8s:
+        state: absent
+        definition: "{{ lookup('file', '../k8s/frontend-deployement-service.yaml')}}"
+        validate_certs: no
+
+    - name: "Create a k8s namespace"
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', '../k8s/namespace.yaml')}}"
+
+    - name: "Create a backend deployement"
+      kubernetes.core.k8s:
+        state: present
+        definition: "{{ lookup('file', '../k8s/frontend-deployement-service.yaml')}}"
