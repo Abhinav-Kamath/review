@@ -12,9 +12,8 @@
       kubernetes.core.k8s:
         state: absent
         definition: "{{ lookup('file', '../k8s/frontend-deployement-service.yaml')}}"
-        validate_certs: no
 
-    - name: "Create a backend deployement"
+    - name: "Create a frontend deployement"
       kubernetes.core.k8s:
         state: present
         definition: "{{ lookup('file', '../k8s/frontend-deployement-service.yaml')}}"
