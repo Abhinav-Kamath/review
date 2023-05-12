@@ -14,11 +14,6 @@
         definition: "{{ lookup('file', '../k8s/frontend-deployement-service.yaml')}}"
         validate_certs: no
 
-    - name: "Create a k8s namespace"
-      kubernetes.core.k8s:
-        state: present
-        definition: "{{ lookup('file', '../k8s/namespace.yaml')}}"
-
     - name: "Create a backend deployement"
       kubernetes.core.k8s:
         state: present
