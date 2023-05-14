@@ -7,9 +7,9 @@ export const Songs =[
         category:'Tollywood',
         language:'Telugu',
         year:'2022',
-        time:'5min',
+        duration:'5min',
         video:'',
-        rate:3.4,
+        rating:3.4,
         reviews:23,
     },
     {

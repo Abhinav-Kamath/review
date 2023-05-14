@@ -15,7 +15,7 @@ pipeline {
         stage('Build and Test') {
             steps {
                 // Maven build, 'sh' specifies it is a shell command
-                sh 'npm i'
+                sh 'npm i && npm test'
             }
         }
         stage('Build Docker Images') {
